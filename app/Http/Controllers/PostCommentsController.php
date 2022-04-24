@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class PostCommentsController extends Controller
 {
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  LEAVE A POST COMMENT
+    //
     public function store(\App\Models\Post $post) // Request $request
     {
         // $post->comments()->create([
@@ -16,7 +22,7 @@ class PostCommentsController extends Controller
             'body' => 'required'
         ]);
         $post->comments()->create([
-            'user_id' => request()->user()->id,
+            'user_id' => current_user()?->id,
             'body' => request('body')
         ]);
         return back()->with('success', 'Comment added.');

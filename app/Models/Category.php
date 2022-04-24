@@ -8,12 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  CHANGE ROUTE'S ID ASSOCIATION
+    //
     public function getRouteKeyName()
     {
         return 'slug';
     }
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET POSTS
+    //
     public function posts()
     {
         return $this->hasMany(Post::class);

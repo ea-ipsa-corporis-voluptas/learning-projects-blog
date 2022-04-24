@@ -7,13 +7,14 @@
             </div>
             <div>
                 <header class="mb-4">
-                    <h3 class="font-bold" style="font-family: Brush Script MT;">{{ $comment->author->userName }}</h3>
+                    <h3 class="font-bold" style="font-family: Brush Script MT;">
+                        {{ $comment->author->userName }}
+                    </h3>
                     <p class="text-xs" style="font-family: Courier New;">
-                        Posted
-                        <time> {{ $comment->created_at->diffForHumans() }}</time>
+                        Posted <time>{{ $comment->created_at->diffForHumans() }}</time>
                     </p>
                 </header>
-                <p style="font-family: Lucida Handwriting;">{{ $comment->body }}</p>
+                <p style="font-size: 18px; font-weight: 500; font-family: Lucida Handwriting;">{{ $comment->body }}</p>
             </div>
         </article>
     </x-panel>

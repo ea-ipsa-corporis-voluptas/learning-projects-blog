@@ -6,15 +6,33 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  LOG OUT
+    //
     public function destroy()
     {
         auth()->logout();
         return redirect('/')->with('success', 'Goodbye!');
     }
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  REDIRECT TO LOG IN FORM
+    //
     public function create()
     {
         return view('sessions.create');
     }
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  LOG IN
+    //
     public function store()
     {
         $attributes = request()->validate([

@@ -1,14 +1,21 @@
-<header class="max-w-sm mx-auto mt-20 text-center">
-    <x-panel :padding="'p-2'">
-        <h1 class="text-4xl" style="font-family: fantasy;">
-            Latest <span class="text-red-800" style="font-family: fantasy;">a</span> News
-        </h1>
-    </x-panel>
-
-    <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
+@props([
+    'includeHeading' => true,
+    'requestPrefix' => ''
+])
+<header class="max-w-xl mx-auto mt-20 text-center">
+    @if($includeHeading)
+        <x-custom-panel :color="'yellow'" :opacity="'100'" :padding="'p-3'">
+            <h1 class="text-4xl" style="font-family: Arial">
+                Latest<span class="text-gray-900 hover:text-gray-800" style="font-family: fantasy;">
+                Cupiditate quo iure ut ullam labore voluptatem sunt est. Enim totam sit eaque veritatis voluptates magni praesentium.
+                </span>News
+            </h1>
+        </x-custom-panel>
+    @endif
+    <div class="flex space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
-        <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
-            <x-category-dropdown />
+        <div class="relative lg:inline-flex rounded-xl">
+            <x-category-dropdown :requestPrefix="$requestPrefix" />
         </div>
 
         <!-- Other Filters -->
@@ -34,16 +41,17 @@
         </div> -->
 
         <!-- Search -->
-        <div class="relative lg:inline-flex items-center bg-gray-300 rounded-xl px-3 py-2 hover:bg-gray-100">
+        <div class="relative lg:inline-flex items-center">
             <form method="GET" action="#">
                 @if(request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
+                <!-- <x-form.input :name="'search'" :padding="false" :value="request('search')" /> -->
                 <input
                     type="text"
                     name="search"
                     placeholder="Find something"
-                    class="bg-transparent placeholder-black font-semibold text-sm text-center"
+                    class="w-60 h-8 rounded-full text-black placeholder-black font-semibold text-sm text-center animate-pulse"
                     value="{{ request('search') }}"
                 >
             </form>

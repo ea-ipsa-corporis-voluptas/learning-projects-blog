@@ -6,35 +6,21 @@
                 <form method="POST" action="/login" class="mt-10">
                     @csrf
                     <!-- email -->
-                    <x-div-wrapper class="mb-6">
-                        <x-input-label :name="'email'">Email</x-input-label>
-                        <x-input-field :type="'email'" :name="'email'" :value="old('email')" />
-                        @error('email')
-                            <p class="text-red-500 text-xs mt-1">
-                                {{ $message }}
-                            </p>
-                        @enderror
+                    <x-div-wrapper class="mb-6 text-center">
+                        <x-form.input :name="'email'" :padding="'mt-32 mb-2'" :sizing="'w-64 h-9 p-2'" :type="'email'" :autocomplete="'email'" />
                     </x-div-wrapper>
                     <!-- password -->
-                    <x-div-wrapper class="mb-6">
-                        <x-input-label :name="'password'">Password</x-input-label>
-                        <x-input-field :type="'password'" :name="'password'" />
-                        @error('password')
-                            <p class="text-red-500 text-xs mt-1">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </x-div-wrapper>
-                    <x-div-wrapper class="mb-6">
+                    <div class="mb-6 text-center">
+                        <x-form.input :name="'password'" :padding="'mt-8 mb-2'" :sizing="'w-48 h-7 p-2'" :type="'password'" :autocomplete="'new-password'" />
+                        <button type="button" class="mt-3 font-mono font-bold" onclick="passwordVisibility()">show</button>
+                    </div>
+                    <!-- submit -->
+                    <x-div-wrapper class="mt-16 mb-6">
                         <x-submit-button>Submit</x-submit-button>
-                        <!-- <button type="submit"
-                                class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
-                        >
-                            Submit
-                        </button> -->
                     </x-div-wrapper>
                 </form>
             </x-panel>
         </main>
     </section>
 </x-layout>
+<x-js.show-function />

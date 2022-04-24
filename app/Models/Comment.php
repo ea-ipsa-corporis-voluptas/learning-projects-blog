@@ -13,11 +13,22 @@ class Comment extends Model
         'user_id',
         'body'
     ];
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET POST
+    //
     public function post()
     {
         return $this->belongsTo(Post::class);
     }
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET AUTHOR
+    //
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Followable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Followable;
 
     public function getRouteKeyName()
     {
@@ -47,22 +48,42 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET USERNAME
+    //
     public function getUsernameAttribute($username)
     {
         return ucwords($username);
     }
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  SET PASSWORD
+    //
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
     }
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET POSTS
+    //
     public function posts()
     {
         return $this->hasMany(Post::class);
     }
-
+    //
+    //------------------------------------------------
+    //------------------------------------------------
+    //
+    //                  GET COMMENTS
+    //
     public function comments()
     {
         return $this->hasMany(Comment::class);

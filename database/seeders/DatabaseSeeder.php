@@ -24,8 +24,27 @@ class DatabaseSeeder extends Seeder
         $count = 1;
         while($count < 21) {
             $category = \App\Models\Category::factory()->create();
-            \App\Models\Post::factory(5)->create(['user_id' => \App\Models\User::factory()->create()->id, 'category_id' => $category->id]);
-            \App\Models\Post::factory(5)->create(['user_id' => \App\Models\User::factory()->create()->id, 'category_id' => $category->id]);
+            $post_counter = 0;
+            while($post_counter < 5) {
+                \App\Models\Post::factory()->create([
+                    'user_id' => \App\Models\User::factory()->create()->id,
+                    'category_id' => $category->id,
+                    'thumbnail' => 'postImages/' . strval(random_int(1, 47)) . '.png',
+                    'status' => 'published',
+                    'total_views' => 0
+                ]);
+                ++$post_counter;
+            }
+            while($post_counter < 10) {
+                \App\Models\Post::factory()->create([
+                    'user_id' => \App\Models\User::factory()->create()->id,
+                    'category_id' => $category->id,
+                    'thumbnail' => 'postImages/' . strval(random_int(1, 47)) . '.png',
+                    'status' => 'published',
+                    'total_views' => 0
+                ]);
+                ++$post_counter;
+            }
             $postQuantity = $count * 10;
             $commentCount = 0;
             while($commentCount < 5) {

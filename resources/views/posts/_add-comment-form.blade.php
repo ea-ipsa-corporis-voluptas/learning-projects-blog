@@ -9,10 +9,10 @@
             <div class="mt-6">
                 <textarea
                     name="body"
-                    class="w-full focuse:outline-none focus:ring rounded-3xl p-6 bg-gray-200 font-semibold text-black"
+                    class="w-full focus:outline-none focus:ring rounded-3xl p-6 bg-gray-200 font-semibold text-black"
                     rows="5"
                     placeholder="Quick, think of something to say!"
-                    style="font-family: 'Courier New', monospace;"
+                    style="font-size: 20px; font-weight: 500; font-family: monospace;"
                     required
                 ></textarea>
                 @error('body')
@@ -32,12 +32,10 @@
         <x-panel :padding="'p-2'" :reverse="true" :ei="true">
             <x-panel :padding="'p-1'" :span="true">
                 <a href="/register" style="font-family: monospace;">Register</a>
-            </x-panel>
-            or
+            </x-panel>or
             <x-panel :padding="'p-1'" :span="true">
                 <a href="/login" style="font-family: monospace;">Log in</a>
-            </x-panel>
-            to leave a comment.
+            </x-panel>to leave a comment.
         </x-panel>
     </div>
 @endauth

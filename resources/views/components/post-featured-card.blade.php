@@ -3,10 +3,18 @@
 <article class="bg-gray-100 text-black hover:bg-gray-800 hover:text-white">
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
-            <!-- TODO -->
-            <img src="/images/illustration-1.png" alt="Blog Post illustration" class="rounded-xl">
-        </div>
 
+            
+            <!-- POST ILLUSTRATION -->
+            <a href="/posts/{{ $post->slug }}">
+            <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="Blog Post illustration" class="rounded-xl"></a>
+
+            <!-- VIEWS COUNT -->
+            <div class="mt-2 ml-8 font-mono bold">
+                {{ $post->total_views == 1 ? $post->total_views . ' view' : $post->total_views . ' views' }}
+            </div>
+            
+        </div>
         <div class="flex-1 flex flex-col justify-between">
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2 text-center flex">
@@ -14,13 +22,13 @@
                 </div>
 
                 <div class="mt-4 max-w-sm mx-auto text-xs text-center">
-                    <x-panel :padding="'p-2'">
-                        <h1 class="text-3xl">
-                            <a href="/posts/{{ $post->slug }}" style="font-family: Lucida Handwriting; text-shadow: 1px 1px;">
+                    <a href="/{{ $post->customAsset() }}" style="font-family: Arial; text-shadow: 1px 1px; letter-spacing: 0px;">
+                        <x-panel :padding="'p-2'">
+                            <h1 class="text-3xl">
                                 {{ $post->title }}
-                            </a>
-                        </h1>
-                    </x-panel>
+                            </h1>
+                        </x-panel>
+                    </a>
 
                     <span class="mt-2 block text-xs" style="font-family: Courier New;">
                         Published <time>{{ $post->created_at->diffForHumans() }}</time>
@@ -29,30 +37,31 @@
             </header>
 
             <div class="text-sm mt-2">
-                <p style="font-family: Monaco; font-size: 25px;">
+                <p style="font-family: monospace; font-size: 25px; line-height: 30px; letter-spacing: -2.2px;" class="mt-3">
                     {{ $post->excerpt }}
                 </p>
             </div>
 
             <footer class="flex justify-between items-center mt-8">
                 <x-panel :padding="'p-1'">
-                    <div class="flex items-center text-sm">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                        <div class="ml-1">
-                            <a href="/?author={{ $post->author->userName }}" class="text-sm">
+                    <a href="/?author={{ $post->author->userName }}" class="text-sm">
+                        <div class="flex items-center text-sm">
+                            <img src="/images/iconRobot.png" alt="Lary avatar" class="rounded-2xl" width="50">
+                            <div class="ml-1">
                                 <h5 class="font-bold" style="font-family: Brush Script MT;">{{ $post->author->name }}</h5>
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </x-panel>
 
-                <div class="hidden lg:block">
-                    <a href="/posts/{{ $post->slug }}"
-                        class="flex transition-colors duration-300 text-sm font-semibold py-2 px-8"
+                <div class="ml-3 text-center">
+                    <a  
+                        href="/posts/{{ $post->slug }}"
+                        class="transition-colors duration-300 text-sm font-semibold"
                     >
-                        <x-panel :padding="'p-1'">
-                            <span>Read More</span>
-                        </x-panel>
+                        <div class="hidden lg:block">
+                            <x-panel :padding="'p-1'">Read More</x-panel>
+                        </div>
                     </a>
                 </div>
             </footer>
